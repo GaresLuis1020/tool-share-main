@@ -1,0 +1,165 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="content-section">
+        <div class="media">
+            <img class="account-img" src="{{ image_file }}">
+            <div class="media-body">
+                <h2 class="account-heading">{{ current_user.email_address }}</h2>
+                <p class="text-secondary">Hello {{ current_user.first_name }}!</p>
+            </div>
+        </div>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> Account Information </legend>
+                <div class="form-group">
+                    {{ form.forename.label(class="form-control-label") }}
+                    {% if form.forename.errors %}
+                        {{ form.forename(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for errors in form.forename.errors %}
+                                <span>{{ error }}</span>
+                                The first name must be between 2 and 26 characters!
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.forename(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.surname.label(class="form-control-label") }}
+                    {% if form.surname.errors %}
+                        {{ form.surname(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.surname.errors %}
+                                <span>{{ error }}</span>
+                                The surname must be between 2 and 26 characters!
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.surname(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for errors in form.email.errors %}
+                                <span>{{ error }}</span>
+                                Please input a valid email address!
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.postcode.label(class="form-control-label") }}
+                    {% if form.postcode.errors %}
+                        {{ form.postcode(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for errors in form.postcode.errors %}
+                                <span>{{ error }}</span>
+                                Ensure there is no whitespace and that the postcode is valid!
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.postcode(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.phone.label(class="form-control-label") }}
+                    {% if form.phone.errors %}
+                        {{ form.phone(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for errors in form.phone.errors %}
+                                <span>{{ error }}</span>
+                                The phone number was not valid!
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.phone(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.address1.label(class="form-control-label") }}
+                    {% if form.address1.errors %}
+                        {{ form.address1(class="form-control form-control-lg is-invalid", placeholder="Address 1") }}
+                        <div class="invalid-feedback">
+                            {% for errors in form.address1.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.address1(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {% if form.address2.errors %}
+                        {{ form.address2(class="form-control form-control-lg is-invalid", placeholder="Address 2") }}
+                        <div class="invalid-feedback">
+                            {% for errors in form.address2.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.address2(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    City (Optional)
+                    {% if form.city.errors %}
+                        {{ form.city(class="form-control form-control-lg is-invalid" , placeholder="City") }}
+                        <div class="invalid-feedback">
+                            {% for errors in form.city.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.city(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    County (Optional)
+                    {% if form.county.errors %}
+                        {{ form.county(class="form-control form-control-lg is-invalid", placeholder="County") }}
+                        <div class="invalid-feedback">
+                            {% for errors in form.county.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.county(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {% if form.mailing.errors %}
+                        {{ form.mailing(class="btn btn-outline-info is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for errors in form.mailing.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.mailing(class="btn btn-outline-info") }}
+                    {% endif %}
+                    {{ form.mailing.label(class="form-control-label", type="checkbox", value="") }}
+                </div>
+                <div class="form-group">
+                    {{ form.picture.label() }}
+                    {{ form.picture(class="form-control-file") }}
+                    {% if form.picture.errors %}
+                        {% for errors in form.picture.errors %}
+                            <span class="text-danger">File extension must be jpg or png</span></br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+  </div>
+{% endblock content %}

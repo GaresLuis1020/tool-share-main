@@ -1,0 +1,155 @@
+body {
+    background: #fafafa;
+    color: #333333;
+    margin-top: 5rem;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+  }
+  
+  .bg-steel {
+    background-color: #389748;
+  }
+  
+  .site-header {
+    color: #ffffff;
+  }
+
+
+  .site-header {
+    color: #9ac3e7;
+  }
+
+  .site-header {
+    font-weight: 500;
+  }
+  
+  .content-section {
+    background: #b1d6b7;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .article-title {
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .article-subsection-title {
+    padding-top: 25px;
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+  a.article-title:hover {
+    color: #428bca;
+    text-decoration: none;
+  }
+  
+  .article-content {
+    white-space: pre-line;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .article-details {
+    white-space: pre-line;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+  }
+
+  .article-variables {
+    white-space: pre-line;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+  }
+
+  .grid-container {
+    display: grid;
+    grid: 50% / auto auto;
+    grid-gap: 3px;
+    background-color: #389748;
+    padding: 3px;
+  }
+
+  .grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 100%;
+  }
+  
+  .article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+  }
+  
+  .article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3;
+  }
+  
+  .article-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+  }
+  
+  .account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+  }
+
+  .tool-img {
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid rgb(0, 0, 0);
+  }
+  
+  .account-heading {
+    font-size: 2.5rem;
+  }
+
+  .center-row {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+
+  .slider.slider-horizontal{
+    width:85%;
+    margin-left: 20px;
+    margin-right: 0px;
+    }
+
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+
+    .zoom:hover {
+      transform: scale(1.4);
+    }

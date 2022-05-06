@@ -1,0 +1,169 @@
+.account-heading {
+    font-size: 1.8rem;
+}
+
+.account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+}
+
+#panel-1 {
+    background: #b1d6b7;
+    padding: 20px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#panel-2 {
+    vertical-align: top;
+    display: inline-block;
+    background: #b1d6b7;
+    padding:3%;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-right:1.5%;
+    width: 48%;
+}
+
+#panel-3 {
+    vertical-align: top;
+    display: inline-block;
+    background: #b1d6b7;
+    padding:3%;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-left:1.5%;
+    width: 48%;
+}
+
+#recent-post-title{
+    background-color: #FFE0BB;
+    padding: 1%;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#post-title-and-type-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#post-title{
+    display:inline-block;
+    text-align: left;
+    max-width: 70%; 
+}
+
+#post-type{
+    display:inline-block;
+    text-align: right;
+}
+
+#post-container{
+    background-color: #FFF8F8;
+    border-radius: 10px;
+    padding:10px;
+    margin-top: 10px;
+}
+
+#post-date{
+    margin:0px;
+}
+
+#view-all-posts-button{
+    text-decoration: none;
+    background-color: #FFF8F8;
+    border-radius: 10px;
+    display: block;
+    text-align: center;
+    margin-top: 10px; 
+    padding:5px;
+    color: black;
+}
+
+#view-all-posts-button:hover, #messager-app-button:hover, #more-options-button:hover, #submit-button:hover{
+    background-color: #ffe7e7;
+}
+
+#messager-app-button{
+    text-decoration: none;
+    display: block;
+    background-color: #FFF8F8;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: 70%;
+    padding:5px;
+    color: black;
+}
+
+#forename-and-surname-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+
+#surname-field,  #forename-field{
+    text-decoration: none;
+    display:inline-block;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #EFF7ED;
+    border-color:#EFF7ED;
+    padding: 5px 10px;
+    color: black;
+    font-size: 90%;
+    border:0px;
+}
+
+#button-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+#more-options-button, #submit-button{
+    text-decoration: none;
+    display:inline-block;
+    text-align: center;
+    width:48%;
+    background-color: #FFF8F8;
+    border-color:#EFF7ED;
+    padding: 5px;
+    font-size: 90%;
+    border:0px;
+    border-radius: 10px;
+    color:black;
+}
+
+#email-field{
+    text-decoration: none;
+    width:100%;
+    padding: 5px 10px;
+    border-radius: 10px;
+    display:inline-block;
+    background-color: #EFF7ED;
+    border-color:#EFF7ED;
+    font-size: 90%;
+    border:0px;
+}
+
+#email-field-container{
+    margin-bottom: 10px;
+}
+
+.account-error-message{
+    color:red;
+    font-size: 80%;
+}
+
+#surname-field-container{
+    display: inline-block;
+    width:47%;
+}
+
+#forename-field-container{
+    display: inline-block;
+    width:47%;
+}

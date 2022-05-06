@@ -1,0 +1,22 @@
+.nav-link {
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+a.active {
+    background-color: #61ac6d;
+}
+
+.navbar-nav {
+    color: #ffffff;
+    font-weight: 500;
+    color: #9ac3e7;
+}
+
+.nav-link:hover {
+    color: #9ac3e7;
+}
+
+.nav-link.active {
+    font-weight: 500;
+}

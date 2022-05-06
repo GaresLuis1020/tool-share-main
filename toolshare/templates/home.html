@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% set active_page = 'home' %}
+
+{% block content %}
+    <h1>Home Page</h1>
+    {% for post in posts.items %}
+        <article class="media content-section">
+            <div class="media-body">
+            <div class="article-metadata">
+                <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pictures/' + post.author.pfp_img_reference) }}">
+                <a class="mr-2" href="{{ url_for('user_posts', id=post.author.id) }}">{{ post.author.first_name }}</a>
+                <small class="text-muted">{{ post.post_date.strftime('%d-%m-%Y, %H:%M') }}</small>
+                <small class="text-muted" style="float:right">{{ post.post_type }}</small>
+            </div>
+            <h2><a class="article-title" href="{{ url_for('post', post_id=post.post_id) }}">{{ post.post_title }}</a></h2>
+            <p class="article-content">Tool Type: {{ post.tool_type}}</p>
+            <p class="article-content">{{ post.post_description }}</p>
+            <a href="{{ url_for('post', post_id=post.post_id) }}">
+                <img class="tool-img"  src="{{ image_file + post.image_reference }}">
+            </a>
+            </div>
+        </article>
+    {% endfor %} 
+    <div style="text-align:center;">
+        {% for page_num in posts.iter_pages(left_edge=1, right_edge=0, left_current=2, right_current=2) %}
+            {% if page_num %}
+                {% if posts.page == page_num %}
+                    <a class="btn btn-success mb-2" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-outline-success mb-2" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                <-
+            {% endif %}
+        {% endfor %} 
+    </div>
+{% endblock content %}

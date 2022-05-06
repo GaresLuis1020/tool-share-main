@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='navigation.css') }}"> 
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='account.css') }}"> 
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='about.css') }}"> 
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    
+    {% if title %}
+    <title>Tool Share - {{ title }}</title>
+    {% else %}
+    <title>Tool Share</title>
+    {% endif %}
+</head>
+
+<body>
+    <!-- the following sets will represent navigation bar elements associated with different user types -->
+    {% set AnonymousUser_left = [('home','Home'), ('about', 'About'), ('login', 'Login'), ('register', 'Register')] %}  
+    {% set User_left = [('home','Home'), ('about', 'About'),('new_post','New Post'),('account','Account'),('notification','Notifications'), ('logout', 'Logout')] %}  <!-- You added notification here -->
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+            <div class="container">
+                <a class="navbar-brand mr-4" href="/">
+                <img src="static/toolsharelogo.png" alt = "Tool Share Logo" width ="65%"> </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                    <!-- declare the sets representing navigation bar elements on the right and left side  -->
+                    {% if current_user.is_authenticated %} 
+                        {% set left_nav = User_left %} 
+                        {% set right_nav = User_right %} 
+                    {% else %} 
+                        {% set left_nav = AnonymousUser_left %} 
+                        {% set right_nav = AnonymousUser_right %} 
+                    {% endif %}
+                    <!-- Left Side Navigation -->
+                    <div class="navbar-nav mr-auto">
+                        {% for page, title in left_nav %} 
+                            {% if page == active_page %}
+                                <a class="nav-item nav-link active" href="{{ url_for(page) }}">{{ title }}</a> 
+                            {% else %}
+                                <a class="nav-item nav-link" href="{{ url_for(page) }}">{{ title }}</a> 
+                            {% endif %} 
+                        {% endfor %}
+                    </div>
+                    <!-- Right Side Navigation -->
+                    <div class="navbar-nav">
+                        {% for page, title in right_nav %} 
+                            {% if page == active_page %}
+                                <a class="nav-item nav-link active" href="{{ url_for(page) }}">{{ title }}</a> 
+                            {% else %}
+                                <a class="nav-item nav-link" href="{{ url_for(page) }}">{{ title }}</a> 
+                            {% endif %} 
+                        {% endfor %}
+                    </div>
+                    <form class ="form-inline" method="post" action="{{ url_for('results') }}">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search" name="Search" value="{{request.form['Search']}}"></input>
+                        <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="container">
+            <div class="row center-row">
+                <div class="col-md-8">
+                    {% with messages = get_flashed_messages(with_categories=true) %} 
+                        {% if messages %} 
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">
+                                {{ message }}
+                                </div>
+                            {% endfor %} 
+                        {% endif %} 
+                    {% endwith %} 
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.0/bootstrap.min.js"></script>
+</body>
+
+</html>

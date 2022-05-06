@@ -1,0 +1,19 @@
+#panel-1 {
+    background: #b1d6b7;
+    padding: 20px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#image {
+    text-align: center;
+    padding: 0%;
+    flex: 70%;
+}
+
+#main {
+    flex: 70%;
+    padding: 1%;
+    text-align: justify;
+}

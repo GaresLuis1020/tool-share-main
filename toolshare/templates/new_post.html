@@ -1,0 +1,149 @@
+{% extends "layout.html" %}
+{% set active_page = 'new_post' %}
+
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4"> {{ legend }} </legend>
+            <div class="form-group">
+                {{ form.post_type.label(class="form-control-label") }}
+                {% if form.post_type.errors %}
+                    {{ form.post_type(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.post_type.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.post_type(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.tool_type.label(class="form-control-label") }}
+                {% if form.tool_type.errors %}
+                    {{ form.tool_type(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.tool_type.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.tool_type(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.title.label(class="form-control-label") }}
+                {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.description.label(class="form-control-label") }}
+                {% if form.description.errors %}
+                    {{ form.description(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.description.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.description(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="input-group mb-3">
+                {{ form.deposit.label(class="form-control-label") }}
+                <pre class="tab">    </pre>
+                <div class="input-group-prepend">
+                  <span class="input-group-text">£</span>
+                </div>
+                {% if form.deposit.errors %}
+                    {{ form.deposit(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.deposit.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                
+                    {{ form.deposit(class="form-control") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="distanceRange">{{ form.distance.label(class="form-control-label") }}</label>
+                {% if form.distance.errors %}
+                    {{ form.distance(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.distance.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="range">
+                        {{ form.distance(type="range", class="form-range slider slider-horizontal", min="5", max="25",step="5",value="10", id="distanceRange", oninput="this.form.dist.value=this.value") }}
+                        <div class="float-right">
+                            <p>
+                                <output id="dist" name="dist" for="distanceRange">10</output>
+                            Miles</p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="durationRange">{{ form.duration.label(class="form-control-label") }}</label>
+                {% if form.duration.errors %}
+                    {{ form.duration(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.duration.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="range">
+                        {{ form.duration(type="range", class="form-range slider slider-horizontal", min="1", max="30", value="7", id="durationRange", oninput="this.form.day.value=this.value") }}
+                        <div class="float-right">
+                            <p>
+                                <output id="day" name="day" for="distanceRange">7</output>
+                            Days</p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.postcode.label(class="form-control-label") }}
+                {% if form.postcode.errors %}
+                    {{ form.postcode(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for errors in form.postcode.errors %}
+                            <span>{{ error }}</span>
+                            Ensure there is no whitespace and that the postcode is valid!
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.postcode(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.picture.label() }}
+                {{ form.picture(class="form-control-file") }}
+                {% if form.picture.errors %}
+                    {% for errors in form.picture.errors %}
+                        <span class="text-danger">File extension must be jpg or png</span></br>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

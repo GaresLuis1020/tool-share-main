@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% set active_page = 'account' %}
+
+{% block content %}
+<div id="panel-1">
+    <div class="media">
+        <img class="account-img" src="{{ image_file }}">
+        <div class="media-body">
+            <p class="account-heading">{{ current_user.email_address }}</p>
+        </div>
+    </div>
+    <a id="messager-app-button" href="">View Messaging App</a>
+</div>
+<div>
+    <div id="panel-2">
+        <div id="recent-post-title">Recent Posts</div>
+        {% for post in current_user.posts %}
+        <div id="post-container">
+            <div id="post-title-and-type-container">
+                <a id="post-title" href="{{ url_for('post', post_id=post.post_id) }}">{{ post.post_title }}</a>
+                <div id="post-type">{{ post.post_type }}</div>
+            </div><br>
+            <p id="post-date">Date:</p>
+            <small>{{ post.post_date.strftime('%d-%m-%Y') }}</small>
+        </div>
+        {% endfor %}
+        <a id="view-all-posts-button" href="{{ url_for('user_posts', id=current_user.id) }}">View All Posts</a>
+    </div>
+    <div id="panel-3">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+
+            <div id="forename-and-surname-container">
+                
+                <div id="forename-field-container">
+                {{ form.forename(id="forename-field") }}
+                {% if form.forename.errors %}
+                    {% for error in form.forename.errors %}
+                        <div class="account-error-message">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            
+                <div id="surname-field-container">
+                    {{ form.surname(id="surname-field") }}
+                    {% if form.surname.errors %}
+                        {% for error in form.surname.errors %}
+                            <div class="account-error-message">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div id="email-field-container">
+                {{ form.email(id="email-field") }}
+                {% if form.email.errors %}
+                    {% for error in form.email.errors %}
+                        <div class="account-error-message">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            
+            <div id="button-container">
+                {{ form.submit(id="submit-button") }}
+                <a id="more-options-button" href="{{ url_for('account_update') }}">View More Options</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

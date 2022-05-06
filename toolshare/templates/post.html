@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% set active_page = 'post' %}
+
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body">
+        <div class="article-metadata">
+            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pictures/' + post.author.pfp_img_reference) }}">
+            <a class="mr-2" href="{{ url_for('user_posts', id=post.author.id) }}">{{ post.author.first_name }}</a>
+            <small class="text-muted">{{ post.post_date.strftime('%d-%m-%Y, %H:%M') }}</small>
+            <small class="text-muted" style="float:right">{{ post.post_type }}</small>
+
+            
+            {% if post.author == current_user %}
+                <div class="center-row" >
+                    <a class="mt-2 mb-2 btn btn-primary btn-sm" href="{{ url_for('update_post', post_id = post.post_id) }}">Update Post</a>
+                    <button type="button" class="m-2 btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal"  >Delete Post</button>
+                </div>
+            {% endif %}
+        </div>
+        <h2 class="article-title">{{ post.post_title }}</a></h2>
+<a small class="text-muted article-title" href="{{url_for('requestt')}}"> send request</a>
+        <a class="article-subsection-title">
+            <img class="tool-img zoom"  src="{{ image_file + post.image_reference }}">
+        </a>
+        <h3 class="article-subsection-title">Description:</h3>
+        <p class="article-content">{{ post.post_description }}</p>
+        <div class="grid-container">
+          <div>Tool Type: {{ post.tool_type}}</div>
+          <div>Deposit: £{{ "%.2f"|format(post.deposit) }}</div>
+          <div>Lending Duration: {{ post.lending_duration}} days</div>
+          <div >Lending Distance: {{ post.max_distance}} miles</div>
+        </div>
+        {% if current_user.is_authenticated %}
+        <h3 class="article-subsection-title">Map View:</h3>
+          <p class="article-content">
+            <div id="map">
+              <iframe class="center-map"
+              title="Map View"
+              width="100%"
+              height="100%"
+              style="border:1"
+              loading="lazy"
+              allowfullscreen
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB732nzn9p0tocedI-tjskTyhJUbarSJEI
+                  &q={{ post.post_code}}">
+              </iframe>
+            </div>
+          </p>
+        {% endif %}
+        </div>
+    </article>
+    <!-- Modal for delete button -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete the post?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <form action="{{ url_for('delete_post', post_id=post.post_id) }}" method="POST">
+                <input class="btn btn-danger" type="submit" value="Delete">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock content %}
