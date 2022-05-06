@@ -9,6 +9,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, Optional, V
 from ukpostcodeutils import validation
 from toolshare.models import AppUser
 
+
 def validate_postcode(self, postcode):
         if not validation.is_valid_postcode(postcode.data):
             raise ValidationError('Invalid UK Post Code')
