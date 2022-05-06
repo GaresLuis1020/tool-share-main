@@ -11,7 +11,6 @@ from werkzeug.urls import url_parse
 import time
 
 
-
 @app.route("/")
 @app.route("/home")
 def home():
