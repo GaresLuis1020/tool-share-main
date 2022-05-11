@@ -21,7 +21,7 @@ def validate_phone(self, phone):
                 raise ValueError()
         except (phonenumbers.phonenumberutil.NumberParseException, ValueError):
             raise ValidationError('Invalid phone number')
-
+ 
 def validate_password(self, password):
     special_characters = '"!@#$%^&*()-+?_=,<>/"'
     userPassword = password.data
